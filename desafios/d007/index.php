@@ -12,8 +12,9 @@
 <body>
     <?php
     $padrao = numfmt_create("pt_BR", NumberFormatter::CURRENCY);
-    $sal_min = 1380;
+    $sal_min = 1320;
     $sal = $_GET['sal'] ?? 0;
+    $resto = $sal % $sal_min;
     ?>
     <main>
         <h1>Informe seu salário</h1>
@@ -28,7 +29,7 @@
     <section>
         <h2>Resultado Final</h2>
         <?php
-        echo "<p>Quem recebe um salário de " . numfmt_format_currency($padrao, $sal, "BRL") . " ganha <strong>" . intdiv($sal, $sal_min) . " salários mínimos</strong> + " . numfmt_format_currency($padrao, ($sal % $sal_min), "BRL") . "</p>";
+        echo "<p>Quem recebe um salário de " . numfmt_format_currency($padrao, $sal, "BRL") . " ganha <strong>" . intdiv($sal, $sal_min) . " salários mínimos</strong> + " . numfmt_format_currency($padrao, $resto, "BRL") . "</p>";
         ?>
     </section>
 </body>

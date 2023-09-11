@@ -12,11 +12,21 @@
 <body>
     <?php
     $sec = $_GET['sec'] ?? 0;
-    $w = (int)($sec / 604800);
-    $d = (int)($sec % 604800 / 86400);
-    $h = (int)(($sec % 604800) %  86400 / 3600);
-    $m = (int)((($sec % 604800) %  86400) % 3600 / 60);
-    $s = (int)(((($sec % 604800) %  86400) % 3600) % 60 / 60);
+    $resto = $sec;
+
+    $w = (int)($resto / 604800);
+    $resto %= 604800;
+
+    $d = (int)($resto / 86400);
+    $resto %= 86400;
+
+    $h = (int)($resto / 3600);
+    $resto %= 3600;
+
+    $m = (int)($resto / 60);
+    $resto %= 60;
+
+    $s = $resto;
     ?>
     <main>
         <h1>Calculdaora de tempo</h1>
